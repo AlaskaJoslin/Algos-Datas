@@ -11,7 +11,7 @@
 #include <stack>
 #include <queue>
 
-template<typename T>  //T will need to support <
+template <typename T, typename V>  //T will need to support <
 class sequence_container
 {
   enum CONTAINER_TYPE
@@ -28,9 +28,11 @@ class sequence_container
     QUEUE,
     PRIORITY_QUEUE
   };
-  CONTAINER_TYPE type = VECTOR;
+  CONTAINER_TYPE type;
 
-  template<typename T>
+  V internal_data;
+
+  template<T, V>
   class data_structure
   {
 
@@ -41,8 +43,70 @@ class sequence_container
   sequence_container(); //Default will use vector
   sequence_container(CONTAINER_TYPE type);
   ~sequence_container();
-  add(T data);
-  add(int position, T data);
+  void add(T data);
+  void add(int position, T data);
+};
+
+template <typename T>  //T will need to support <
+class sequence_container<T, std::vector<T> >
+{
+  std::vector<T> internal_data;
+
+  template<T, std::vector<T> >
+  class data_structure
+  {
+
+  };
+};
+
+template <>
+class sequence_container<char, std::string>
+{
+  std::string<char> internal_data;
+
+  template<char, std::string<char> >
+  class data_structure
+  {
+
+  };
+};
+
+template <typename T>  //T will need to support <
+class sequence_container<T, std::deque<T> >
+{
+  std::deque<T> internal_data;
+
+  template<T, std::deque<T> >
+  class data_structure
+  {
+
+  };
+};
+
+template <typename T>  //T will need to support <
+class sequence_container<T, std::list<T> >
+{
+  std::list<T> internal_data;
+
+  template<T, std::list<T> >
+  class data_structure
+  {
+
+  };
+};
+
+template <typename T>  //T will need to support <
+class sequence_container<T, std::forward_list<T> >
+{
+  std::forward_list<T> internal_data;
+
+  template<T, std::forward_list<T> >
+  class data_structure
+  {
+
+  };
+};
+
 
   //Want to generalize the sequence containers so a few options
   //1. Just provide a wrapper to each method if the datastructure is
@@ -111,7 +175,7 @@ class sequence_container
   //substr  string
   //swap   vector, string, deque, list, forward_list
   //unique  list, forward_list
-};
+
 
 //Standard STL sequence containers:
 //  vector

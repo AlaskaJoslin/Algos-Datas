@@ -5,10 +5,12 @@ OPTS    = -g -O3 -DBALT
 CFLAGS  = $(OPTS)
 LIBS    = -lm
 
-HEADERS = sort_methods.h \
+HEADERS = sequence_container.h \
+					sort_methods.h \
           utils.h
 
-SRCS    = sort_methods.cpp \
+SRCS    = sequence_container.cpp \
+					sort_methods.cpp \
           args_utils.cpp
 
 OBJS    = $(SRCS:.cpp=.o)
